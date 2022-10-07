@@ -54,6 +54,12 @@ namespace API
                 });
             });
 
+            services.AddCors(option => option.AddPolicy("AllowAllOrigin", builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            }));
+
             #region Dependency Injection
 
             services.AddScoped<EmployeeRepository>();
@@ -82,6 +88,8 @@ namespace API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("AllowAllOrigin");
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,8 +1,125 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_AdminLayout";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div>*@
+
+		<div class="container">
+			<h1 class="ms-4 mt-2">The RESTful Employee API</h1>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalInsert">
+                Tambah Data
+            </button>
+			<table class="table table-striped table-hover" id="table-list">
+				<thead class="table-dark">
+					<tr>
+						<th>No</th>
+                        <th>EmployeeId</th>
+						<th>Nama</th>
+						<th>DepartmentId</th>
+						<th>JobsId</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody id="tbodySW"></tbody>
+			</table>
+		</div>
+
+    <!-- Modal Detail -->
+    <div class="modal fade" id="modalDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form id="DetailsForm">
+                    <div class="form-group">
+                        <label for="EmployeeId">Nomor Induk Karyawan</label>
+                        <input type="number" class="form-control" id="EmployeeIdDetail" name="EmployeeId" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="FirstName">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="FirstNameDetail" name="FirstName" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="DepartmentId">ID Department</label>
+                        <select id="DepartmentIdDetail" name="DepartmentId" class="form-control" required>
+                            
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="JobId">ID Pekerjaan</label>
+                        <select id="JobIdDetail" name="JobId" class="form-control" required>
+                            
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Tambah Data Modal -->
+    <div class="modal fade" id="modalInsert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="InsertForm">
+               @* <div class="form-group">
+                    <label for="EmployeeId">Nomor Induk Karyawan</label>
+                    <input type="number" class="form-control" id="EmployeeId" name="EmployeeId" placeholder="Masukkan Id Karyawan" required>
+                </div>*@
+                <div class="form-group">
+                    <label for="FirstName">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Masukkan Nama Lengkap" required>
+                </div>
+                 <div class="form-group">
+                    <label for="DepartmentId">ID Department</label>
+                    <select id="DepartmentId" name="DepartmentId" class="form-control" required>
+                        <option selected>Pilih...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="JobId">ID Pekerjaan</label>
+                    <select id="JobId" name="JobId" class="form-control" required>
+                        <option selected>Pilih...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+            <button type="submit" class="btn btn-primary" onclick="Insert()">Tambah Data</button>
+          </div>
+        </div>
+      </div>
+    </div>

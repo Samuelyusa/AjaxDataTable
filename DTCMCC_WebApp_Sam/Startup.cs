@@ -35,6 +35,7 @@ namespace DTCMCC_WebApp_Sam
                 option.Cookie.HttpOnly = true;
                 option.Cookie.IsEssential = true;
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,13 +57,15 @@ namespace DTCMCC_WebApp_Sam
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Employee}/{action=Index}/{id?}");
+                    //pattern: "{controller=Employee}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

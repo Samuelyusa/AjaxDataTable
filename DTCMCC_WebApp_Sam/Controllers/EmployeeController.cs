@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using DTCMCC_WebApp_Sam.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 
 namespace DTCMCC_WebApp_Sam.Controllers
 {
